@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ArrowLeft, Wallet, TrendingUp, Calendar, AlertCircle, Settings, MessageSquare, Clock, XCircle, Home, PieChart as PieChartIcon, ArrowUpRight, ArrowDownRight, Users, Star, BarChart3, ScanLine, Camera, ToggleLeft, ToggleRight, Check } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, AreaChart, Area, XAxis, BarChart, Bar, YAxis, CartesianGrid } from 'recharts';
@@ -5,6 +6,7 @@ import { OWNER_TRANSACTIONS, OWNER_REVIEWS, OWNER_INSIGHTS, PITCHES } from '../c
 
 interface OwnerPanelProps {
   onBack: () => void;
+  onNavigate: (view: any) => void;
 }
 
 const scheduleData = [
@@ -32,7 +34,7 @@ const revenueData = [
 
 type OwnerTab = 'MANAGEMENT' | 'FINANCE' | 'HOME' | 'REVIEWS' | 'PROFILE';
 
-const OwnerPanel: React.FC<OwnerPanelProps> = ({ onBack }) => {
+const OwnerPanel: React.FC<OwnerPanelProps> = ({ onBack, onNavigate }) => {
   const [activeTab, setActiveTab] = useState<OwnerTab>('HOME');
   const [loyaltyActive, setLoyaltyActive] = useState(true);
   const [isScannerOpen, setIsScannerOpen] = useState(false);
@@ -347,8 +349,11 @@ const OwnerPanel: React.FC<OwnerPanelProps> = ({ onBack }) => {
           <h1 className="text-[10px] font-bold text-blue-400 tracking-widest uppercase">{getTitle()}</h1>
           <p className="font-black text-lg text-white">Arena Sport Center</p>
         </div>
-        <button className="p-2.5 bg-gray-800/50 rounded-xl hover:bg-gray-700 transition-colors">
-          <Settings size={20} />
+        
+        {/* Chat Link */}
+        <button onClick={() => onNavigate('CHAT')} className="p-2.5 bg-gray-800/50 rounded-xl hover:bg-gray-700 transition-colors relative">
+          <MessageSquare size={20} />
+          <span className="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full border border-[#0A0E14]"></span>
         </button>
       </header>
 

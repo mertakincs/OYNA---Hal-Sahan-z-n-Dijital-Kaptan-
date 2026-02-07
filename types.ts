@@ -6,7 +6,7 @@ export enum UserRole {
   OWNER = 'OWNER'
 }
 
-export type AppView = 'SPLASH' | 'AUTH' | 'ROLE_SELECTION' | 'DASHBOARD' | 'PITCH_DISCOVERY' | 'MARKETPLACE_REF' | 'MARKETPLACE_GK' | 'OWNER_PANEL' | 'SERVICE_DASHBOARD' | 'PAYMENT' | 'MY_TEAM' | 'AI_COACH' | 'PROFILE' | 'NOTIFICATIONS' | 'BOOKING_ADDONS' | 'LOYALTY_CARD' | 'SETTINGS' | 'VOTING' | 'MOTM_REVEAL' | 'OYNA_TV' | 'MATCH_DISCOVERY' | 'MATCH_JOIN' | 'PREMIUM';
+export type AppView = 'SPLASH' | 'AUTH' | 'ROLE_SELECTION' | 'DASHBOARD' | 'PITCH_DISCOVERY' | 'MARKETPLACE_REF' | 'MARKETPLACE_GK' | 'OWNER_PANEL' | 'SERVICE_DASHBOARD' | 'PAYMENT' | 'MY_TEAM' | 'AI_COACH' | 'PROFILE' | 'NOTIFICATIONS' | 'BOOKING_ADDONS' | 'LOYALTY_CARD' | 'SETTINGS' | 'VOTING' | 'MOTM_REVEAL' | 'OYNA_TV' | 'MATCH_DISCOVERY' | 'MATCH_JOIN' | 'PREMIUM' | 'CHAT' | 'MATCH_TICKET';
 
 export enum PlayerStyle {
   KING = 'KRAL',       // Lider, Oyun Kurucu
@@ -134,7 +134,7 @@ export interface Goalkeeper {
 
 export interface ChatMessage {
   id: string;
-  sender: 'AI' | 'USER';
+  sender: 'AI' | 'USER' | 'OWNER';
   text: string;
   timestamp: string;
 }

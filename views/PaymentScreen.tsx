@@ -8,11 +8,12 @@ interface PaymentScreenProps {
   extraFee?: number; // Equipment fee
   hasMotmCoupon?: boolean; // New Prop
   onUpgradeRequest?: () => void;
+  onViewTicket: () => void; // New Callback
 }
 
 type PaymentStep = 'DEPOSIT' | 'POOL' | 'SUCCESS';
 
-const PaymentScreen: React.FC<PaymentScreenProps> = ({ onBack, extraFee = 0, hasMotmCoupon = false, onUpgradeRequest }) => {
+const PaymentScreen: React.FC<PaymentScreenProps> = ({ onBack, extraFee = 0, hasMotmCoupon = false, onUpgradeRequest, onViewTicket }) => {
   const [step, setStep] = useState<PaymentStep>('DEPOSIT');
   const [captainGuarantee, setCaptainGuarantee] = useState(false);
   const [payMode, setPayMode] = useState<'MY_SHARE' | 'MULTI' | 'ALL'>('MY_SHARE');
@@ -270,10 +271,17 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ onBack, extraFee = 0, has
         <p className="text-gray-400 text-center mb-12">Ödemen havuza eklendi. Maç keyfi seni bekliyor.</p>
         
         <button 
-          onClick={onBack}
-          className="mt-12 w-full max-w-sm py-4 bg-gray-800 hover:bg-gray-700 text-white rounded-2xl font-bold flex items-center justify-center gap-2 transition-colors"
+          onClick={onViewTicket}
+          className="w-full max-w-sm py-4 bg-[#FFFF00] text-black rounded-2xl font-black text-lg flex items-center justify-center gap-2 transition-transform hover:scale-105 shadow-lg shadow-yellow-900/20"
         >
-          <ArrowLeft size={20} /> ANA SAYFAYA DÖN
+          <Ticket size={20} /> MAÇ KARTINI GÖRÜNTÜLE
+        </button>
+
+        <button 
+          onClick={onBack}
+          className="mt-4 text-gray-500 font-bold text-sm hover:text-white"
+        >
+          ANA SAYFAYA DÖN
         </button>
       </div>
   );

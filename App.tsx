@@ -22,6 +22,8 @@ import OynaTv from './views/OynaTv';
 import MatchDiscovery from './views/MatchDiscovery';
 import MatchJoin from './views/MatchJoin';
 import PremiumScreen from './views/PremiumScreen';
+import ChatScreen from './views/ChatScreen';
+import MatchTicket from './views/MatchTicket';
 
 const App: React.FC = () => {
   const [view, setView] = useState<AppView>('SPLASH');
@@ -81,11 +83,17 @@ const App: React.FC = () => {
       case 'MARKETPLACE_GK':
         return <Marketplace type="GK" onBack={() => setView('DASHBOARD')} />;
       case 'OWNER_PANEL':
-        return <OwnerPanel onBack={() => setView('ROLE_SELECTION')} />;
+        return <OwnerPanel onBack={() => setView('ROLE_SELECTION')} onNavigate={(v) => setView(v)} />;
       case 'SERVICE_DASHBOARD':
         return <ServiceDashboard role={role!} onBack={() => setView('ROLE_SELECTION')} onNavigate={(v) => setView(v)} />;
       case 'PAYMENT':
-        return <PaymentScreen extraFee={addOnTotal} hasMotmCoupon={hasMotmCoupon} onBack={() => setView('BOOKING_ADDONS')} onUpgradeRequest={() => setView('PREMIUM')} />;
+        return <PaymentScreen 
+            extraFee={addOnTotal} 
+            hasMotmCoupon={hasMotmCoupon} 
+            onBack={() => setView('BOOKING_ADDONS')} 
+            onUpgradeRequest={() => setView('PREMIUM')}
+            onViewTicket={() => setView('MATCH_TICKET')}
+        />;
       case 'MY_TEAM':
         return <MyTeam onBack={() => setView('DASHBOARD')} onNavigate={(v) => setView(v)} />;
       case 'AI_COACH':
@@ -130,6 +138,10 @@ const App: React.FC = () => {
             setView('PROFILE');
           }}
         />;
+      case 'CHAT':
+        return <ChatScreen onBack={() => setView('DASHBOARD')} />;
+      case 'MATCH_TICKET':
+        return <MatchTicket onBack={() => setView('DASHBOARD')} />;
       default:
         return <SplashScreen onStart={() => setView('AUTH')} />;
     }
