@@ -1,0 +1,7 @@
+{
+  "name": "OYNA - Halı Saha Rezervasyon Platformu",
+  "description": "Sahaya hükmet, kalede duvar ol, adaleti sağla veya tesisini yönet. Halı saha dünyasının dijital kaptanı.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
